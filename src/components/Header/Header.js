@@ -8,7 +8,7 @@ import {
     NavItem
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
-import RoundTableLogo from '../../app/assets/image/logo.png'
+import RoundTableLogo from '../../app/assets/image/basiclogo.png'
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <Navbar className='navbar-expand-md navbar-dark'>
             <NavbarBrand className='ms-5' href="/">
-                <img className='float-start' src={RoundTableLogo} alt='roundtable logo' />
+                <img className='float-start' src={RoundTableLogo} style={{ width: 60, height: 60 }} alt='roundtable logo' />
                 <h1 className='mt-1'>Round Table</h1>
             </NavbarBrand>
             <NavbarToggler onClick={() => setMenuOpen(!menuOpen)} />

@@ -1,0 +1,10 @@
+.navbar-dark {
+    background-color: rgb(63, 45, 143);
+    margin-bottom: 1rem;
+    min-height: 8rem;
+}
+
+.site-footer {
+    background-color: rgb(35, 0, 91);
+    min-height: 8rem;
+}
