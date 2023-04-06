@@ -8,3 +8,8 @@
     background-color: rgb(35, 0, 91);
     min-height: 8rem;
 }
+
+.testimg {
+    width: 200px;
+    height: 200px;
+}
