@@ -17,3 +17,8 @@
 .ballot-margin {
     margin-bottom: 3rem;
   }
+
+.cardMask {
+    border-radius: 14px; 
+    max-height: 30rem;
+}

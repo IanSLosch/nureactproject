@@ -1,24 +1,32 @@
-import { Container, Row, Col, Card, CardBody, CardHeader } from 'reactstrap'
-
+import { Container, Row, Col } from 'reactstrap'
+import BannedListDisplay from '../features/bannedlist/BannedListDisplay'
+import OnClickDisplay from '../features/bannedlist/OnClickDisplay'
+import { useState } from 'react'
+import cardback from '../app/assets/image/mtg-cardback.jpg'
 
 const BannedListPage = () => {
-    <Container my='4'>
-        <Row>
-            <Col sm='6'>
-                <h3>Banned List</h3>
-                <div className='d-flex justify-content-center'>
-                    <ul>
-                        <li>Insert Banned Component</li>
-                    </ul>
-                </div>
-            </Col>
-            <Col sm='6'className='d-flex justify-content-center'>
-                <div className='list-display d-none d-sm-block'>
-                    <img className='img-fluid cardMask' id='cardDisplay' src="/image/mtg-cardback.jpg" alt='card' />
-                </div>
-            </Col>
-        </Row>
-    </Container>
+    const handleImageUpdate = (newSrc) => {
+        setImageSrc(newSrc)
+    }
+
+const [imageSrc, setImageSrc] = useState(cardback)
+
+    return(
+        <Container my='4'>
+            <Row>
+                <Col sm='4' className='text-left offset-2'>
+                    <h3>Banned List</h3>
+                    <div>
+                        <BannedListDisplay handleImageUpdate={handleImageUpdate} />
+
+                    </div>
+                </Col>
+                <Col sm='6'className='text-center'>
+                    <OnClickDisplay imageSrc={imageSrc} />
+                </Col>
+            </Row>
+        </Container>
+    )
 }
 
 export default BannedListPage

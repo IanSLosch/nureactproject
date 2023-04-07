@@ -8,7 +8,7 @@ const HomePage = () => {
         <Container>
             <Row className='ballot-margin'>
                 <Col>
-                    <h2>Cast you vote</h2>
+                    <h2>Cast your vote</h2>
                     <h4>A Magic the Gathering - Commander community-driven banned list variant</h4>
                     <h2>Phase 1</h2>
                     <p>Insert CountDown</p>

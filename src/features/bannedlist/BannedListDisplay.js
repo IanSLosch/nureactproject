@@ -1,17 +1,28 @@
-import { BANNEDLIST } from "../../app/shared/BANNEDLIST";
+
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectBannedList } from "./bannedListSlice";
+import OnHover from "./OnHover";
 
-const BannedListDisplay = () => {
+const BannedListDisplay = ({ handleImageUpdate }) => {
+    const [selectedItem, setSelectedItem] = useState(null)
+    const bannedList = useSelector(selectBannedList)
 
-    const BANNEDLIST.map(
-
-    )
-
+    const handleSelected = (item) => {
+        setSelectedItem(item)
+    }
 
     return (
-
+        <ul>
+            {bannedList.map((item) => {
+                return (
+                    <div key={item.id}>
+                        <OnHover item={item} handleSelected={handleSelected} handleImageUpdate={handleImageUpdate} />
+                    </div>
+                )
+            })}
+        </ul>
     )
-
 }
 
 export default BannedListDisplay
