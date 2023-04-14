@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const OnHover = ({ item, handleSelected, handleImageUpdate }) => {
+const OnHover = ({ item, handleImageUpdate }) => {
     const { name, id, image } = item
     const [isHovered, setIsHovered] = useState(false)
 
@@ -16,9 +16,7 @@ const OnHover = ({ item, handleSelected, handleImageUpdate }) => {
         const newSrc = (image)
         console.log(newSrc)
         handleImageUpdate(newSrc)
-        handleSelected(item)
     }
-
 
     return (
         <div
@@ -37,4 +35,3 @@ const OnHover = ({ item, handleSelected, handleImageUpdate }) => {
 }
 
 export default OnHover
-

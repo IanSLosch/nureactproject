@@ -1,9 +1,23 @@
 import { Container, Row, Col } from 'reactstrap'
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 // import { Link } from 'react-router-dom'
 
 const Footer = () => {
+    const [backgroundColor, setBackgroundColor] = useState('')
+    const location = useLocation()
+
+    useEffect(() => {
+        if (location.pathname == '/') {
+            setBackgroundColor('#000000') // set background color to black
+        } else {
+            setBackgroundColor('') // reset background color
+        }
+    }, [location])
+
+
     return (
-        <footer className="site-footer">
+        <footer className="site-footer" style={{ backgroundColor }}>
             <Container>
                 <Row className='text-center'>
                     <Col className='mt-4'>

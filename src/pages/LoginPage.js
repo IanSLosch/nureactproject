@@ -1,24 +1,13 @@
 import { Container, Row, Col, Card, CardBody, CardHeader } from 'reactstrap'
-import image from '../app/assets/image/ionaart.jpg'
+import { LoginForm } from '../features/login/LoginForm'
 
 const LoginPage = () => {
 
-    return (
-        <Container>
-            <Row>
-                <Col>
-                    <Card>
-                        <CardHeader>
-                            <h3>LoginPage</h3>
-                        </CardHeader>
-                        <CardBody>
-                            <img className='testimg' src={image} />
-                        </CardBody>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
-    )
+  return (
+    <Container style={{ height: "32rem" }} className='text-center'>
+      <LoginForm />
+    </Container>
+  )
 }
 
 export default LoginPage
