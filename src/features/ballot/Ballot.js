@@ -21,8 +21,10 @@ const Ballot = ({ ballotInfo }) => {
     }
 
     useEffect(() => {
+
         const results = BANNEDLISTOBJECTS.filter(item =>
-            item.displayName.includes(inputValue)
+            item.displayName.toLowerCase().includes(inputValue.toLowerCase()) &&
+            ((ballotId === 'ban' && item.isBanned) || (ballotId === 'unban' && !item.isBanned))
             )
             setSearchResults(results)
     }, [inputValue])

@@ -73,9 +73,9 @@ const LoginModal = () => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color='primary' onClick={handleSubmit} disabled={!isFormValid} >
+          {<Button color='primary' onClick={handleSubmit} disabled={!isFormValid} >
             Create Account
-          </Button>
+          </Button>}
           <Button color='secondary' onClick={toggle}>
             Cancel
           </Button>

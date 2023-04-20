@@ -1,12 +1,12 @@
 .navbar-dark {
-    background-color: rgb(119, 30, 167);
+    background-color: rgb(41, 0, 88);
     margin-bottom: 1rem;
     min-height: 8rem;
 }
 
 
 .site-footer {
-    background-color: rgb(119, 30, 167);
+    background-color: rgb(41, 0, 88);
     min-height: 8rem;
 }
 
@@ -17,9 +17,9 @@
 
 .ballot-margin {
     margin-bottom: 3rem;
-  }
+}
 
 .cardMask {
-    border-radius: 14px; 
+    border-radius: 14px;
     max-height: 30rem;
 }
