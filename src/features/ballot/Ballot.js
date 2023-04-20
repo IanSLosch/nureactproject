@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, Form, FormGroup, Label, Button, Container, Row, Col, Input } from 'reactstrap'
+import { Card, CardHeader, CardBody, Form, Button, Container, Row, Col, Input } from 'reactstrap'
 import VotingCard from '../votingcards/VotingCard'
 import { useEffect, useState } from 'react'
 import BANNEDLISTOBJECTS from '../../app/shared/BANNEDLISTOBJECTS.js'

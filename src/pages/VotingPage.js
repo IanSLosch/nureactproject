@@ -1,7 +1,7 @@
 import { Container, Row, Col, Card, CardBody, CardHeader } from 'reactstrap'
 // import image from '../app/assets/image/swayart.jpg'
 import Ballot from '../features/ballot/Ballot'
-// import { CountDown } from '../utils/countdown'
+import CountdownTimer from '../components/CountdownTimer/CountdownTimer'
 
 const VotingPage = () => {
 
@@ -12,8 +12,7 @@ const VotingPage = () => {
           <h2>Cast your vote</h2>
           <h4>A Magic the Gathering - Commander community-driven banned list variant</h4>
           <h2>Phase 1</h2>
-          <p>Insert CountDown</p>
-          {/* <CountDown /> */}
+          <CountdownTimer countdownTimestampMs={1682654400000} />
         </Col>
       </Row>
       <Ballot

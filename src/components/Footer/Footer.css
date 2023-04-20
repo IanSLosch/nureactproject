@@ -4,12 +4,12 @@ li {
 
 h3 {
   padding-left: 2rem;
-  color: rgb(122, 122, 122);
+  color: rgb(255, 255, 255);
 }
 
 
 .link {
-  color: rgb(193, 193, 193); /* Changes the color of the hyperlink */
+  color: rgb(255, 255, 255); /* Changes the color of the hyperlink */
   text-decoration: none; /* Removes the underline */
   font-weight: bold; /* Makes the text bold */
 }
