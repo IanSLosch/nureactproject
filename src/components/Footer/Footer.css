@@ -1,0 +1,16 @@
+li {
+  list-style-type: none;
+}
+
+h3 {
+  padding-left: 2rem;
+  color: rgb(122, 122, 122);
+}
+
+
+.link {
+  color: rgb(193, 193, 193); /* Changes the color of the hyperlink */
+  text-decoration: none; /* Removes the underline */
+  font-weight: bold; /* Makes the text bold */
+}
+
