@@ -1,45 +1,46 @@
 import { Card, CardHeader, CardBody, Form, Button, Container, Row, Col, Input } from 'reactstrap'
 import VotingCard from '../votingcards/VotingCard'
-import { useEffect, useState } from 'react'
-import BANNEDLISTOBJECTS from '../../app/shared/BANNEDLISTOBJECTS.js'
+import { useState } from 'react'
 import defaultCardImage from '../../app/assets/image/empty-ballot.png'
-
+import { fetchCardData } from '../../app/shared/network/networkManagment'
+import { debounce } from '../../utils/debounce'
 
 
 const Ballot = ({ ballotInfo }) => {
+
   const { ballotId, heading, description } = ballotInfo
 
-  const [cardState1, setCardState1] = useState({ image: defaultCardImage, displayName: 'Empty', id: 1 });
-  const [cardState2, setCardState2] = useState({ image: defaultCardImage, displayName: 'Empty', id: 2 });
-  const [cardState3, setCardState3] = useState({ image: defaultCardImage, displayName: 'Empty', id: 3 });
+  const [cardState1, setCardState1] = useState({ image: defaultCardImage, displayName: 'Empty', id: 1 })
+  const [cardState2, setCardState2] = useState({ image: defaultCardImage, displayName: 'Empty', id: 2 })
+  const [cardState3, setCardState3] = useState({ image: defaultCardImage, displayName: 'Empty', id: 3 })
 
   const [inputValue, setInputValue] = useState('')
   const [searchResults, setSearchResults] = useState([])
 
   const handleChange = (event) => {
     setInputValue(event.target.value)
-    // captures search input
+    console.log(inputValue)
+    debounce(updateSuggestions, 500)
   }
 
-  useEffect(() => {
-    const results = BANNEDLISTOBJECTS.filter(item =>
-      item.displayName.toLowerCase().includes(inputValue.toLowerCase()) &&
-      ((ballotId === 'ban' && item.isBanned) || (ballotId === 'unban' && !item.isBanned))
-    )
+  const updateSuggestions = () => {
+    console.log('it works')
+    const results = fetchCardData(inputValue)
     setSearchResults(results)
-  }, [inputValue])
+  }
 
-  const addItem = (newItem) => {
-    console.log('Initiate addItem()')
+  const updateCardDisplay = (cardData) => {
     if (cardState1.displayName === 'Empty') {
-      console.log('Card 1 is full')
-      setCardState1(newItem);
+      console.log('Card 1: ' + inputValue)
+      setCardState1(cardData)
     } else if (cardState2.displayName === 'Empty') {
-      console.log('Card 2 is full')
-      setCardState2(newItem);
+      console.log('Card 2: ' + inputValue)
+      setCardState2(cardData)
     } else if (cardState3.displayName === 'Empty') {
-      console.log('All cards are full')
-      setCardState3(newItem);
+      console.log('Card 3: ' + inputValue)
+      setCardState3(cardData)
+    } else {
+      console.log('All cards currently occupied')
     }
   }
 
@@ -64,23 +65,26 @@ const Ballot = ({ ballotInfo }) => {
     }
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault() // prevent the page from reloading
-    const searchResult = BANNEDLISTOBJECTS.find((i) => i.displayName.toLowerCase() === inputValue.toLowerCase())
-    if (searchResult &&
-      ((ballotId === 'ban' && searchResult.isBanned) || (ballotId === 'unban' && !searchResult.isBanned))) {
-      console.log('Found a match:', searchResult)
-      addItem(searchResult)
-      setInputValue('')
-    } else {
-      console.log('No match found')
-    }
+  const handleResultClick = (item) => {
+    updateCardDisplay(item)
+    setInputValue('')
   }
 
-  // const [submit, setSubmit] = useState(false);
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const cardData = await fetchCardData(inputValue)
+    console.log(cardData.legalities)
 
-  // useEffect(() => {
-  // }, [submit])
+    if (cardData &&
+      (cardData.legalities.commander === 'legal' && ballotId === 'ban') ||
+      (cardData.legalities.commander === 'banned' && ballotId === 'unban')) {
+      updateCardDisplay(cardData)
+      console.log('Added ' + cardData.name + ' to the ban ballot.')
+    } else {console.log('Error')}
+
+    setInputValue('')
+  }
+
 
   return (
 
@@ -126,13 +130,13 @@ const Ballot = ({ ballotInfo }) => {
                       <Row>
                         <Col sm='9'>
                           <div style={{ height: '50px', overflowY: 'scroll' }} >
-                          {inputValue &&
-                            <ul>
-                              {searchResults.map(item => (
-                                <li key={item.id}>{item.displayName}</li>
-                              ))}
-                            </ul>
-                          }
+                            {inputValue &&
+                              <ul>
+                                {searchResults.map(item => (
+                                  <li className='text-start' key={item.id} onClick={() => handleResultClick(item)}>{item.displayName}</li>
+                                ))}
+                              </ul>
+                            }
                           </div>
                         </Col>
                       </Row>

@@ -10,11 +10,14 @@ import {
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import RoundTableLogo from '../../app/assets/image/basiclogo.png'
+import './Header.css'
+
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false)
     const [backgroundColor, setBackgroundColor] = useState('')
     const location = useLocation()
+    
 
     useEffect(() => {
         if (location.pathname == '/') {
@@ -25,7 +28,7 @@ const Header = () => {
     }, [location])
 
     return (
-        <Navbar dark className='navbar-expand-md mb-0 pt-1' style={{ backgroundColor }} >
+        <Navbar dark className='navbar navbar-expand-md mb-0 pt-1' style={{ backgroundColor }} >
             <NavbarBrand className='ms-5' href="/">
                 <img className='float-start' src={RoundTableLogo} style={{ width: 60, height: 60 }} alt='logo' />
                 <h1 className='mt-1'>Round Table</h1>
